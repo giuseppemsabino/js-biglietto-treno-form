@@ -54,7 +54,7 @@ document.getElementById("generateButton").addEventListener("click", function () 
   
       // Crear la card con Bootstrap
       const resultCard = `
-        <div class="card">
+        <div class="card mt-5">
           <div class="card-body">
             <h5 class="card-title">Biglietto di ${passengerName}</h5>
             <p class="card-text">
