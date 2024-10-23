@@ -21,49 +21,49 @@
 // Nota:
 // Se non vi sentite particolarmente creativi, questa potrebbe essere un'implementazione da seguire per il secondo milestone. 
 // Potete scegliere di implementare una soluzione completamente diversa oppure simile, ma in ogni caso cercate di farla vostra.
-const tripDistance = parseInt(prompt("Qualè la distanza da percorrere"));
+// const tripDistance = parseInt(prompt("Qualè la distanza da percorrere"));
 
-const passenegerAge = parseInt(prompt("Età del passegero"));
+// const passenegerAge = parseInt(prompt("Età del passegero"));
 
-const kmPrice = 0.21;
-let outputMessage = "";
+// const kmPrice = 0.21;
+// let outputMessage = "";
 
-/*ELABORAZIONE */
-const isTripDistanceValid = !isNaN(tripDistance) && tripDistance > 0;
-const isPassengerAgeValid = !isNaN(passenegerAge) && passenegerAge >= 0;
+// /*ELABORAZIONE */
+// const isTripDistanceValid = !isNaN(tripDistance) && tripDistance > 0;
+// const isPassengerAgeValid = !isNaN(passenegerAge) && passenegerAge >= 0;
 
-if (isPassengerAgeValid && isTripDistanceValid) {
-  let totalPrice = tripDistance * kmPrice;
+// if (isPassengerAgeValid && isTripDistanceValid) {
+//   let totalPrice = tripDistance * kmPrice;
 
-  if (passenegerAge < 18) {
-    const kidDiscount = totalPrice * 0.2;
-    totalPrice = totalPrice - kidDiscount;
+//   if (passenegerAge < 18) {
+//     const kidDiscount = totalPrice * 0.2;
+//     totalPrice = totalPrice - kidDiscount;
 
-    outputMessage += `Essendo minore di 18 anni si applica lo sconto infantile di un -20% sull totale del biglietto. totale =   ${totalPrice.toFixed(
-      2
-    )}  €`;
-  }
-  else if (passenegerAge > 65) {
-    const elderDiscount = totalPrice * 0.4;
-    totalPrice = totalPrice - elderDiscount;
+//     outputMessage += `Essendo minore di 18 anni si applica lo sconto infantile di un -20% sull totale del biglietto. totale =   ${totalPrice.toFixed(
+//       2
+//     )}  €`;
+//   }
+//   else if (passenegerAge > 65) {
+//     const elderDiscount = totalPrice * 0.4;
+//     totalPrice = totalPrice - elderDiscount;
 
-    outputMessage += `Essendo maggiore di 65 annisi applica lo sconto terza età di -40% sull totale del biglietto. totale =   ${totalPrice.toFixed(
-      2
-    )}  €`;
-  }
-  else {
-    outputMessage += `il totale sarebbe di =  ${totalPrice.toFixed(2)} €`;
-  }
-}
-else{
-    outputMessage = `Errore:`;
+//     outputMessage += `Essendo maggiore di 65 annisi applica lo sconto terza età di -40% sull totale del biglietto. totale =   ${totalPrice.toFixed(
+//       2
+//     )}  €`;
+//   }
+//   else {
+//     outputMessage += `il totale sarebbe di =  ${totalPrice.toFixed(2)} €`;
+//   }
+// }
+// else{
+//     outputMessage = `Errore:`;
 
-    if(!isPassengerAgeValid){
-        outputMessage += " \n Età non valida";
-    }
+//     if(!isPassengerAgeValid){
+//         outputMessage += " \n Età non valida";
+//     }
 
-    if(!isTripDistanceValid){
-        outputMessage += " \n Distanza non valida";
-    }
-}
-alert(outputMessage);
+//     if(!isTripDistanceValid){
+//         outputMessage += " \n Distanza non valida";
+//     }
+// }
+// alert(outputMessage);
