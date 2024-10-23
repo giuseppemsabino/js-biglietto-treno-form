@@ -21,49 +21,88 @@
 // Nota:
 // Se non vi sentite particolarmente creativi, questa potrebbe essere un'implementazione da seguire per il secondo milestone. 
 // Potete scegliere di implementare una soluzione completamente diversa oppure simile, ma in ogni caso cercate di farla vostra.
-// const tripDistance = parseInt(prompt("Qualè la distanza da percorrere"));
 
-// const passenegerAge = parseInt(prompt("Età del passegero"));
-
-// const kmPrice = 0.21;
-// let outputMessage = "";
-
-// /*ELABORAZIONE */
-// const isTripDistanceValid = !isNaN(tripDistance) && tripDistance > 0;
-// const isPassengerAgeValid = !isNaN(passenegerAge) && passenegerAge >= 0;
-
-// if (isPassengerAgeValid && isTripDistanceValid) {
-//   let totalPrice = tripDistance * kmPrice;
-
-//   if (passenegerAge < 18) {
-//     const kidDiscount = totalPrice * 0.2;
-//     totalPrice = totalPrice - kidDiscount;
-
-//     outputMessage += `Essendo minore di 18 anni si applica lo sconto infantile di un -20% sull totale del biglietto. totale =   ${totalPrice.toFixed(
-//       2
-//     )}  €`;
-//   }
-//   else if (passenegerAge > 65) {
-//     const elderDiscount = totalPrice * 0.4;
-//     totalPrice = totalPrice - elderDiscount;
-
-//     outputMessage += `Essendo maggiore di 65 annisi applica lo sconto terza età di -40% sull totale del biglietto. totale =   ${totalPrice.toFixed(
-//       2
-//     )}  €`;
-//   }
-//   else {
-//     outputMessage += `il totale sarebbe di =  ${totalPrice.toFixed(2)} €`;
-//   }
-// }
-// else{
-//     outputMessage = `Errore:`;
-
-//     if(!isPassengerAgeValid){
-//         outputMessage += " \n Età non valida";
-//     }
-
-//     if(!isTripDistanceValid){
-//         outputMessage += " \n Distanza non valida";
-//     }
-// }
-// alert(outputMessage);
+// bottone "Genera"
+// Captura del botón "Genera"
+document.getElementById("generateButton").addEventListener("click", function () {
+    // Obtenemos los valores de los inputs
+    const tripDistance = parseInt(document.getElementById("km-to-do").value);
+    const ageGroup = document.getElementById("inputAge").value;
+    const passengerName = document.getElementById("pass-name").value;
+  
+    const kmPrice = 0.21;
+    let outputMessage = "";
+    let totalPrice = tripDistance * kmPrice;
+  
+    // Validamos la distancia y la edad
+    const isTripDistanceValid = !isNaN(tripDistance) && tripDistance > 0;
+    const isAgeGroupValid = ageGroup === "adult" || ageGroup === "minor" || ageGroup === "senior";
+  
+    if (isTripDistanceValid && isAgeGroupValid && passengerName) {
+      // Aplicamos los descuentos en base al grupo de età
+      if (ageGroup === "minor") {
+        const kidDiscount = totalPrice * 0.2;
+        totalPrice = totalPrice - kidDiscount;
+        outputMessage = `Sconto minorenne del 20%. Prezzo totale: ${totalPrice.toFixed(2)}€`;
+      } else if (ageGroup === "senior") {
+        const seniorDiscount = totalPrice * 0.4;
+        totalPrice = totalPrice - seniorDiscount;
+        outputMessage = `Sconto over 65 del 40%. Prezzo totale: ${totalPrice.toFixed(2)}€`;
+      } else {
+        outputMessage = `Prezzo totale senza sconto: ${totalPrice.toFixed(2)}€`;
+      }
+  
+      // Crear la card con Bootstrap
+      const resultCard = `
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Biglietto di ${passengerName}</h5>
+            <p class="card-text">
+              <strong>Distanza percorsa:</strong> ${tripDistance} km<br>
+              <strong>Fascia d'età:</strong> ${ageGroup === "adult" ? "Maggiorenne" : ageGroup === "minor" ? "Minorenne" : "Over 65"}<br>
+              <strong>${outputMessage}</strong>
+            </p>
+          </div>
+        </div>
+      `;
+  
+      // Insertar la card en el contenedor
+      document.getElementById("resultCardContainer").innerHTML = resultCard;
+    } else {
+      // En caso de error
+      let errorMessage = "Errore nei dati inseriti: ";
+      if (!isTripDistanceValid) {
+        errorMessage += "Distanza non valida. ";
+      }
+      if (!isAgeGroupValid) {
+        errorMessage += "Gruppo di età non valido. ";
+      }
+      if (!passengerName) {
+        errorMessage += "Nome Cognome non valido. ";
+      }
+  
+      // Mostrar el mensaje de error en una card
+      const errorCard = `
+        <div class="card text-danger">
+          <div class="card-body">
+            <h5 class="card-title">Errore</h5>
+            <p class="card-text">${errorMessage}</p>
+          </div>
+        </div>
+      `;
+  
+      document.getElementById("resultCardContainer").innerHTML = errorCard;
+    }
+  });
+  
+  // Captura del botón "Annulla"
+  document.getElementById("cancelButton").addEventListener("click", function () {
+    // Resetea los campos del formulario
+    document.getElementById("pass-name").value = "";
+    document.getElementById("km-to-do").value = "";
+    document.getElementById("inputAge").value = "adult";
+  
+    // Limpiamos la card de resultado
+    document.getElementById("resultCardContainer").innerHTML = "";
+  });
+  

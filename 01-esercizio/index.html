@@ -16,33 +16,62 @@
   <body>
 
     <h1 class="text-center p-5">CALCOLA IL PREZZO DEL TUO BIGLIETTO</h1>
+
     <div class="container">
-      
-      <div class="row g-3">
-        <div class="col-4">
-          <label for="pass-name" class="py-2">Nome Cognome</label>
-          <input type="text" class="form-control" placeholder="Inserici Nome e Cogname" id="pass-name">
+
+      <div class="border d-flex justify-content-center flex-column">
+ 
+        <div class="p-3">
+
+          <div class="row g-3">
+
+            <div class="col-4">
+
+              <label for="pass-name" class="py-2">Nome Cognome</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Inserisci Nome e Cognome"
+                id="pass-name"
+              />
+
+            </div>
+
+            <div class="col-4">
+
+              <label for="km-to-do" class="py-2">Km da percorrere</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Inserisci i Km"
+                id="km-to-do"
+              />
+            </div>
+
+            <div class="col-md-4">
+
+              <label for="inputAge" class="py-2">Fascia d'età</label>
+              <select id="inputAge" class="form-select">
+                <option value="adult" selected>Maggiorenne</option>
+                <option value="minor">Minorenne</option>
+                <option value="senior">Over 65</option>
+              </select>
+            </div>
+
+          </div>
         </div>
-        <div class="col-4">
-          <label for="km-to-do" class="py-2">Km da percorrere</label>
-          <input type="text" class="form-control" placeholder="Last name" id="km-to-do"  aria-label="Last name">
+
+        <div class="text-center p-5">
+
+          <button id="generateButton" class="btn btn-primary m-2 p-2">Genera</button>
+          <button id="cancelButton" class="btn btn-primary m-2 p-2">Annulla</button>
+
         </div>
-        <div class="col-md-4">
-          <label for="inputAge" class="py-2">Fascia d'età</label>
-          <select id="inputAge" class="form-select">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
-        </div>
+
+        <div id="resultCardContainer" class="mt-5"></div>
+
       </div>
-
-    <div class="text-center p-5 ">
-    <button class="btn btn-primary m-2 p-2">Genera</button> <button class="btn btn-primary m-2 p-2">Anulla</button>
     </div>
-
-    </div>
-
-
     <script src="script.js"></script>
   </body>
 </html>
