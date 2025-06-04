@@ -25,7 +25,6 @@
 // bottone "Genera"
 // Captura del botón "Genera"
 document.getElementById("generateButton").addEventListener("click", function () {
-    // Obtenemos los valores de los inputs
     const tripDistance = parseInt(document.getElementById("km-to-do").value);
     const ageGroup = document.getElementById("inputAge").value;
     const passengerName = document.getElementById("pass-name").value;
@@ -34,12 +33,10 @@ document.getElementById("generateButton").addEventListener("click", function () 
     let outputMessage = "";
     let totalPrice = tripDistance * kmPrice;
   
-    // Validamos la distancia y la edad
     const isTripDistanceValid = !isNaN(tripDistance) && tripDistance > 0;
     const isAgeGroupValid = ageGroup === "adult" || ageGroup === "minor" || ageGroup === "senior";
   
     if (isTripDistanceValid && isAgeGroupValid && passengerName) {
-      // Aplicamos los descuentos en base al grupo de età
       if (ageGroup === "minor") {
         const kidDiscount = totalPrice * 0.2;
         totalPrice = totalPrice - kidDiscount;
@@ -52,7 +49,6 @@ document.getElementById("generateButton").addEventListener("click", function () 
         outputMessage = `Prezzo totale senza sconto: ${totalPrice.toFixed(2)}€`;
       }
   
-      // Crear la card con Bootstrap
       const resultCard = `
         <div class="card mt-5">
           <div class="card-body">
@@ -66,10 +62,8 @@ document.getElementById("generateButton").addEventListener("click", function () 
         </div>
       `;
   
-      // Insertar la card en el contenedor
       document.getElementById("resultCardContainer").innerHTML = resultCard;
     } else {
-      // En caso de error
       let errorMessage = "Errore nei dati inseriti: ";
       if (!isTripDistanceValid) {
         errorMessage += "Distanza non valida. ";
@@ -81,7 +75,6 @@ document.getElementById("generateButton").addEventListener("click", function () 
         errorMessage += "Nome Cognome non valido. ";
       }
   
-      // Mostrar el mensaje de error en una card
       const errorCard = `
         <div class="card text-danger">
           <div class="card-body">
@@ -95,14 +88,11 @@ document.getElementById("generateButton").addEventListener("click", function () 
     }
   });
   
-  // Captura del botón "Annulla"
   document.getElementById("cancelButton").addEventListener("click", function () {
-    // Resetea los campos del formulario
     document.getElementById("pass-name").value = "";
     document.getElementById("km-to-do").value = "";
     document.getElementById("inputAge").value = "adult";
   
-    // Limpiamos la card de resultado
     document.getElementById("resultCardContainer").innerHTML = "";
   });
   
